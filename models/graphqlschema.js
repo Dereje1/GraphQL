@@ -1,0 +1,18 @@
+const { buildSchema } = require('graphql')
+
+const schema = buildSchema(`
+    type Query {
+        allPins: [Pin!]!
+        singlePin(id: String): Pin
+    },
+    type Pin{
+        id: String
+        owner: String
+        imgDescription:String
+        imgLink:String
+        timeStamp: String
+        savedBy: [String]
+    }
+`);
+
+module.exports= schema
