@@ -5,6 +5,11 @@ const schema = buildSchema(`
         allPins: [Pin!]!
         singlePin(id: String): Pin
     },
+    type Mutation {
+        addPin(owner:String!, imgDescription:String!, imgLink:String!): Pin!
+        updatePin(id:String!, savedBy:[String!]!): Pin!
+        deletePin(id:String!): Pin
+    }
     type Pin{
         id: String
         owner: String
