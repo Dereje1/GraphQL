@@ -1,10 +1,9 @@
 "use strict" //create one place for db connection
 // Bring Mongoose into the app
-var mongoose = require( 'mongoose' );
+const mongoose = require( 'mongoose' );
 
 // Build the connection string
-//var dbURI = 'mongodb://localhost:27017/votingapp';
-var dbURI = process.env.MONGOLAB_URI;
+const dbURI = process.env.MONGOLAB_URI;
 mongoose.Promise = global.Promise;
 // Create the database connection
 mongoose.connect(dbURI);

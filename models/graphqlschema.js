@@ -8,15 +8,15 @@ const schema = buildSchema(`
     type Mutation {
         addPin(owner:String!, imgDescription:String!, imgLink:String!): Pin!
         updatePin(id:String!, savedBy:[String!]!): Pin!
-        deletePin(id:String!): Pin
+        deletePin(id:String!): String
     }
     type Pin{
-        id: String
-        owner: String
-        imgDescription:String
-        imgLink:String
-        timeStamp: String
-        savedBy: [String]
+        id: String!
+        owner: String!
+        imgDescription:String!
+        imgLink:String!
+        timeStamp: String!
+        savedBy: [String]!
     }
 `);
 
