@@ -6,7 +6,7 @@ const expGraphql = require('express-graphql')
 
 const app=express()
 const schema = require('./models/graphqlschema.js')
-const root = require('./reslover.js')
+const root = require('./resolver.js')
 
 app.use('/',express.static(path.join(__dirname, 'client')));
 app.get("/", function (req, res) {

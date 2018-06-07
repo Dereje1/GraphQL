@@ -15,16 +15,16 @@ const root = {
         return pin
     },
     updatePin: async (args) =>{
-        const pin = await updateP(args)
+        const pin = await updateSinglePin(args)
         return pin
     },
     deletePin: async (args) =>{
-        const deletedPin = await deleteP(args)
+        const deletedPin = await deleteSinglePin(args)
         return deletedPin
     }
  }
 
- getAllPins = () => {
+getAllPins = () => {
     return new Promise((resolve,reject)=>{
         pins.find({},(err,results)=>{
             if (err){
@@ -39,6 +39,7 @@ getSinglePin = (args) => {
     return new Promise((resolve,reject)=>{
         pins.findById(args.id,(err,result)=>{
             if(err){
+                console.log(err)
                 reject(err)
             }
             resolve(result)
@@ -64,13 +65,11 @@ addSinglePin = (args) => {
     })
 }
 
-updateP = (args) => {
-    const pinToUpdate = [...args.savedBy];
-    const pinID = args.id;
-    const update = { '$set': {savedBy: pinToUpdate}};
+updateSinglePin = (args) => {
+    const update = { '$set': {savedBy: [...args.savedBy]}};
     const modified = {new: true};
     return new Promise((resolve,reject)=>{
-        pins.findByIdAndUpdate(pinID, update, modified, (err, pin)=>{
+        pins.findByIdAndUpdate(args.id, update, modified, (err, pin)=>{
             if(err){
                 reject(err)
             }
@@ -80,7 +79,7 @@ updateP = (args) => {
     
 }
 
-deleteP = (args) =>{
+deleteSinglePin = (args) =>{
     return new Promise((resolve,reject)=>{
         pins.remove({_id:args.id},(err,result)=>{
             if(err){
